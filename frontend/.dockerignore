@@ -1,0 +1,36 @@
+# Node
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Build output
+dist/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Environment
+.env
+.env.local
+.env.production
+
+# Git
+.git
+.gitignore
+
+# Docker
+Dockerfile
+.dockerignore
+nginx.conf
+
+# Tests
+coverage/
+.nyc_output/
+
+# Misc
+.DS_Store
+Thumbs.db

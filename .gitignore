@@ -1,0 +1,113 @@
+# ===========================================
+# L&F Grupo Farmacéutico - .gitignore
+# ===========================================
+
+# -------------------------------------------
+# Python / Django
+# -------------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Django
+*.log
+local_settings.py
+db.sqlite3
+*.pot
+backend/staticfiles/
+backend/static_root/
+
+# Virtual environments
+venv/
+ENV/
+env/
+.venv
+
+# -------------------------------------------
+# Node / React (Vite)
+# -------------------------------------------
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug/
+dist/
+build/
+.cache/
+
+# -------------------------------------------
+# Environment Variables
+# -------------------------------------------
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# ALLOW specific .env.example files
+!.env.example
+
+# -------------------------------------------
+# IDE
+# -------------------------------------------
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# -------------------------------------------
+# Docker
+# -------------------------------------------
+# Los Dockerfiles y entrypoint.sh DEBEN estar en el repo para Dokploy.
+# Ignoramos el compose, solo para uso local.
+docker-compose*.yml
+
+# -------------------------------------------
+# Media Files (User uploads)
+# -------------------------------------------
+backend/media/img_gptalents/
+backend/media/img_users/
+backend/media/*.png
+backend/media/*.jpg
+backend/media/*.jpeg
+backend/media/*.gif
+backend/media/*.pdf
+
+# Keep media directory structure
+!backend/media/.gitkeep
+
+# -------------------------------------------
+# Logs & Misc
+# -------------------------------------------
+logs/
+*.log
+*.pem
+*.key
+*.crt
+*.sql
+dump.rdb

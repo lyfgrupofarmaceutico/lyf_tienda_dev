@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>✨ Verificación de cuenta</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f6f8;
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        max-width: 600px;
+        margin: 40px auto;
+        background-color: #d1d1d1;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        padding: 30px;
+      }
+      .logo {
+        width: 100%;
+        height: 80px;
+        border-radius: 8px;
+        background-color: #ffffff;
+        overflow: hidden;
+        margin: 0 auto 20px auto;
+        display: block;
+      }
+      .logo img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        display: block;
+      }
+      .otp {
+        font-size: 28px;
+        font-weight: bold;
+        color: #2d89c8;
+        background-color: #ffffff;
+        border-radius: 8px;
+        text-align: center;
+        margin: 20px 0;
+      }
+      p {
+        font-size: 16px;
+        color: #374151;
+        text-align: center;
+      }
+      .footer {
+        margin-top: 30px;
+        font-size: 12px;
+        color: #2d89c8;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      {% comment %}
+      <div class="logo">
+        <img
+          src="http://localhost:8000/media/logo.png"
+          alt="L&F Grupo Farmacéutico"
+        />
+      </div>
+      {% endcomment %}
+      <p>Gracias por registrarte en <strong>L&F Grupo Farmacéutico</strong>.</p>
+      <p>Tu código de verificación es:</p>
+      <div class="otp">{{ otp }}</div>
+      <p>🕑 Este código expira en 10 minutos.</p>
+      <div class="footer">
+        © 2026 L&F Grupo Farmacéutico. Todos los derechos reservados.
+      </div>
+    </div>
+  </body>
+</html>

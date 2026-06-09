@@ -1,0 +1,342 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 
+  L&F Grupo Farmacéutico - Brand Style Sheet
+  Basado en la Guía de Identidad Visual de la marca.
+
+  // Colores de Marca extraídos del Logotipo 
+  --color-primary-blue: #2D89C8;  // Azul Primario - Confianza y Profesionalismo 
+  --color-deep-blue: #1E5F9E;     // Azul Profundo - Estabilidad y Autoridad 
+  --color-cyan-sky: #6AC3EC;      // Cian / Sky Blue - Frescura e Innovación 
+  
+  // Superficies y Fondos 
+  --color-white: #FFFFFF;         // Blanco Puro - Higiene y Claridad 
+  --color-bg-light: #F8FAFC;      // Fondo suave para secciones 
+  
+  // Tipografía 
+  --color-text-gray: #333333;     // Gris Texto - Alta legibilidad 
+  --color-text-on-dark: #FFFFFF;  // Texto sobre fondos oscuros 
+
+*/
+
+/* L&F Grupo Farmacéutico - Paleta de colores 
+
+Colores Principales
+  --primary-navy: #1a365d; // Azul Marino Corporativo - Confianza y Estabilidad
+  --primary-blue: #0056b3; // Azul Profesional Activo - CTAs y Acciones
+  --accent-blue: #2b6cb0; // Azul de Acento - Iconos y Detalles
+
+Superficies y Fondos
+  --bg-white: #ffffff; // Blanco Puro - Higiene y Claridad
+  --bg-ice: #f0f4f8; // Azul Hielo - Fondos de Sección y Separadores
+
+Tipografía
+  --text-main: #4a5568; // Gris Oscuro Azulado - Cuerpo de texto legible
+  --text-heading: #1a365d; // El mismo Navy para títulos - Autoridad
+  --text-on-blue: #ffffff; // Blanco para texto sobre fondos oscuros
+
+*/
+
+@layer base {
+  :root {
+    /* === FONTS === */
+    --font-sans: "Outfit", sans-serif;
+
+    /* === COLORES BASE (Navy + Verde clínico) === */
+    --bg-primario: hsl(0, 0%, 100%);
+    --bg-secundario: hsl(210, 10%, 94%);
+    --bg-oscuro: hsl(220, 25%, 12%);
+
+    /* Colores texto */
+    --txt-blanco: hsl(0, 0%, 100%);
+    --txt-negro: hsl(220, 15%, 18%);
+    --txt-gris: hsl(220, 8%, 42%);
+
+    /* Color primario: Navy azul */
+    --primario: #1c5c9c;
+
+    /* Color secundario: Verde clínico */
+    --secundario: #2d89c8;
+
+    /* Color de acentos o enfasis: teal */
+    --enfasis: #6ad0ec;
+
+    /* Color descuentos: ámbar suave */
+    --descuento: hsl(40, 100%, 50%);
+
+    /* Color destacados: verde dorado */
+    --destacado: hsl(60, 100%, 50%);
+
+    /* Color de alerta o destructivo */
+    --destructivo: hsl(4, 100%, 50%);
+
+    /* Color bordes e inputs */
+    --border: hsl(220, 20%, 84%);
+    --input: hsl(220, 20%, 88%);
+    --ring: #1c5c9c;
+
+    /* Radios y transiciones */
+    --radius: 0.65rem;
+    --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* Gradientes */
+    --gradient-primary: linear-gradient(
+      135deg,
+      hsl(220, 25%, 12%) 0%,
+      hsl(222, 28%, 62%) 100%
+    );
+
+    --gradient-secondary: linear-gradient(
+      180deg,
+      hsl(150, 45%, 42%) 0%,
+      hsl(172, 52%, 48%) 100%
+    );
+
+    /* Sombras */
+    --shadow-card: 0 4px 12px -2px hsla(220, 20%, 50%, 0.12);
+    --shadow-hover: 0 12px 28px -4px hsla(220, 25%, 30%, 0.25);
+
+    /* Sombras de color secundario */
+    --shadow-card-sec: 0 4px 14px -3px hsla(150, 45%, 42%, 0.2);
+    --shadow-hover-sec: 0 12px 30px -4px hsla(150, 45%, 42%, 0.35);
+  }
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--bg-secundario);
+    color: var(--txt-negro);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* ==== UTILIDADES DE COLORS EN TAILWIND ==== */
+@layer utilities {
+  .bg-primario {
+    background-color: var(--primario);
+  }
+  .bg-secundario {
+    background-color: var(--secundario);
+  }
+  .bg-oscuro {
+    background-color: var(--bg-oscuro);
+  }
+  .bg-blanco {
+    background-color: var(--txt-blanco);
+  }
+  .txt-primario {
+    color: var(--primario);
+  }
+  .txt-secundario {
+    color: var(--secundario);
+  }
+  .txt-enfasis {
+    color: var(--enfasis);
+  }
+  .txt-descuento {
+    color: var(--descuento);
+  }
+  .txt-destacado {
+    color: var(--destacado);
+  }
+  .txt-destructivo {
+    color: var(--destructivo);
+  }
+  .txt-blanco {
+    color: var(--txt-blanco);
+  }
+  .txt-negro {
+    color: var(--txt-negro);
+  }
+  .txt-gris {
+    color: var(--txt-gris);
+  }
+  .border-primario {
+    border-color: var(--primario);
+  }
+  .border-secundario {
+    border-color: var(--secundario);
+  }
+  .border-enfasis {
+    border-color: var(--enfasis);
+  }
+}
+
+/* === ANIMACIONES === */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes pulse-soft {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@layer components {
+  .animate-fade-in-up {
+    animation: fadeInUp 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    opacity: 0;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+    opacity: 0;
+  }
+
+  .animate-slide-left {
+    animation: slideInLeft 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    opacity: 0;
+  }
+
+  .animate-slide-right {
+    animation: slideInRight 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    opacity: 0;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    opacity: 0;
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .animate-pulse-soft {
+    animation: pulse-soft 2s ease-in-out infinite;
+  }
+
+  /* Stagger delays */
+  .stagger-1 {
+    animation-delay: 0.1s;
+  }
+  .stagger-2 {
+    animation-delay: 0.2s;
+  }
+  .stagger-3 {
+    animation-delay: 0.3s;
+  }
+  .stagger-4 {
+    animation-delay: 0.4s;
+  }
+  .stagger-5 {
+    animation-delay: 0.5s;
+  }
+  .stagger-6 {
+    animation-delay: 0.6s;
+  }
+
+  /* Skeleton shimmer */
+  .skeleton-shimmer {
+    background: linear-gradient(
+      90deg,
+      hsl(210, 10%, 94%) 25%,
+      hsl(210, 10%, 88%) 50%,
+      hsl(210, 10%, 94%) 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+
+  /* Glass / Glassmorphism */
+  .glass {
+    background: hsla(0, 0%, 100%, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid hsla(220, 20%, 90%, 0.3);
+  }
+
+  .glass-dark {
+    background: hsla(220, 25%, 12%, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid hsla(220, 25%, 20%, 0.4);
+  }
+}
