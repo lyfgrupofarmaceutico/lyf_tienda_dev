@@ -10,7 +10,7 @@ import logo from "@assets/logo-grupo.webp";
 import co from "@assets/co.svg";
 
 const Footer = () => {
-  const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER;
+  const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER || 3182825718;
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -50,7 +50,7 @@ const Footer = () => {
               >
                 <FaPhoneAlt className="size-5 mr-2" />
                 {whatsappNumber
-                  ? `(+57) ${whatsappNumber.slice(2)}`
+                  ? `(+57) ${whatsappNumber.slice?.(2) || ""}`
                   : "(+57) --- --- ----"}
               </a>
             </div>
