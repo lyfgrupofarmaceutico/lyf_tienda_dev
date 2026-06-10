@@ -38,7 +38,7 @@ const HeroCarousel = () => {
   } = usePromocionesLanding();
 
   // Determinar qué promociones mostrar
-  const hayDatosReales = promociones.length > 0;
+  const hayDatosReales = Array.isArray(promociones) && promociones.length > 0;
   const promocionesMostrar = hayDatosReales ? promociones : PROMOCIONES_DEFAULT;
 
   // Log de errores para debug
