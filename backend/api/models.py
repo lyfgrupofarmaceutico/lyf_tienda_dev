@@ -381,7 +381,7 @@ class AuditoriaCambio(models.Model):
 
     def __str__(self):
         fecha_formateada = date_format(
-            self.creado, format="l, d \d\\e F \d\\e Y", use_l10n=True
+            self.creado, format=r"l, d \d\\e F \d\\e Y", use_l10n=True
         )
         correo_usuario = self.user.email if self.user else "System"
         return f"Fecha: {fecha_formateada} Usuario: {correo_usuario} Acción: - {self.accion}"
