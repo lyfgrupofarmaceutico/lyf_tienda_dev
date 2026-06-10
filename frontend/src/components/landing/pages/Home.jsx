@@ -428,15 +428,6 @@ const Home = () => {
             {/* GRID DE PRODUCTOS - Solo cuando hay productos reales */}
             {showSkeleton ? (
               renderSkeletonProductos()
-            ) : mostrarBanner ? (
-              /* Muestra el banner por defecto si no hay productos, hay error o está vacío */
-              <div className="w-full rounded-md overflow-hidden shadow-md mt-6">
-                <img
-                  src={banner_productos}
-                  alt="Nuestros Productos"
-                  className="w-full h-auto object-cover"
-                />
-              </div>
             ) : (
               /* Muestra la cuadrícula de productos de forma segura */
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 pt-10">
