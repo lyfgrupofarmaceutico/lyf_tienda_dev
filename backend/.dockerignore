@@ -34,7 +34,6 @@ media/
 # Docker
 Dockerfile
 .dockerignore
-entrypoint.sh
 
 # Tests
 .pytest_cache/
