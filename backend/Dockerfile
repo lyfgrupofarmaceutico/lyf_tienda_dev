@@ -1,5 +1,5 @@
 # Backend Dockerfile - Django + Gunicorn
-FROM python:3.11-slim
+FROM python:3.12-slim
 
 # Variables de entorno
 ENV PYTHONDONTWRITEBYTECODE=1
@@ -18,7 +18,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 # Copiar requirements primero (mejor cache)
-COPY requirements.txt .
+COPY requirements.txt /app/requirements.txt
 
 # Instalar dependencias de Python
 RUN pip install --upgrade pip && \
@@ -34,10 +34,11 @@ RUN mkdir -p /app/media /app/staticfiles
 # Crear usuario no root para seguridad
 RUN adduser --disabled-password --gecos '' appuser && \
     chown -R appuser:appuser /app
-USER appuser
 
 # Dar permisos de ejecución al script
 RUN chmod +x /app/entrypoint.sh
+
+USER appuser
 
 # Puerto
 EXPOSE 8000
