@@ -9,11 +9,15 @@ RUN npm ci
 
 COPY . .
 
-# Declarar los argumentos de construcción (Dokploy los inyectará desde la pestaña Environment)
+# 1. ARGS que Dokploy inyectara al compilar
 ARG VITE_API_URL
-ENV VITE_API_URL=$VITE_API_URL
+ARG VITE_WHATSAPP_NUMBER
 
-# Build de producción (Aquí Vite lee la variable e incrusta la URL pública del backend)
+# 2. Se convierten a ENV para que el bundler (Vite/Webpack) los lea
+ENV VITE_API_URL=$VITE_API_URL
+ENV VITE_WHATSAPP_NUMBER=$VITE_WHATSAPP_NUMBER
+
+# 3. Comando de build para el frontend
 RUN npm run build
 
 # Production stage - Nginx
