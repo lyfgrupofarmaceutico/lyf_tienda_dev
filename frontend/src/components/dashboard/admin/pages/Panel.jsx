@@ -91,14 +91,17 @@ export default function Panel() {
 
   // DATOS PARA LA TABLA (últimos 10 usuarios)
   const ultimosUsuarios = useMemo(() => {
-    return (stats.ultimos_usuarios || [])
+    // Si stats o ultimos_usuarios no existen, devolvemos un arreglo vacío de inmediato
+    if (!stats || !stats.ultimos_usuarios) return [];
+
+    return stats.ultimos_usuarios
       .slice(-10)
       .reverse()
       .map((u, idx) => ({
         ...u,
         enumeracion: (stats.ultimos_usuarios?.length || 0) - idx,
       }));
-  }, [stats.ultimos_usuarios]);
+  }, [stats]);
 
   // COLUMNAS DE LA TABLA
   const columns = useMemo(

@@ -3,9 +3,10 @@ export const generateWhatsAppMessage = (cart, total, userName = "Cliente") => {
   const now = new Date();
   const day = String(now.getDate()).padStart(2, "0");
   const month = now
-    .toLocaleString("es-CO", { month: "short" })
+    .toLocaleString("es-CO", { month: "short" } || "")
     .toUpperCase()
-    .slice(0, 3);
+    .slice(0, 3)
+    .replace(".", "");
   const year = now.getFullYear();
 
   const time = now.toLocaleString("es-CO", {

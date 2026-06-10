@@ -49,7 +49,9 @@ const Footer = () => {
                 className="flex items-center justify-center text-xl font-bold hover:text-enfasis transition-colors"
               >
                 <FaPhoneAlt className="size-5 mr-2" />
-                {`(+57) ${whatsappNumber.slice(2)}`}
+                {whatsappNumber
+                  ? `(+57) ${whatsappNumber.slice(2)}`
+                  : "(+57) --- --- ----"}
               </a>
             </div>
 

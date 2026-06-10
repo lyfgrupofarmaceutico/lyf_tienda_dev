@@ -69,7 +69,7 @@ const Tienda = () => {
   const productosFiltrados = filtrarProductos();
   const productosVisibles = mostrarTodos
     ? productosFiltrados
-    : productosFiltrados.slice(0, 8);
+    : productosFiltrados?.slice(0, 8) || [];
 
   const manejarMostrarTodos = () => {
     setMostrarTodos(!mostrarTodos);
