@@ -25,7 +25,6 @@ dist/
 # Docker
 Dockerfile
 .dockerignore
-nginx.conf
 
 # Tests
 coverage/
