@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useProductosLanding } from "@src/hooks/useProductosLanding";
 import { useContactoLanding } from "@src/hooks/useContactoLanding";
 import { Link } from "react-router-dom";
@@ -73,7 +73,7 @@ const servicios = [
 ];
 
 const Home = () => {
-  const { data: productos = [], isLoading, error } = useProductosLanding();
+  const { data: productos, isLoading, error } = useProductosLanding();
   const { mutate, isPending } = useContactoLanding();
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -87,29 +87,34 @@ const Home = () => {
     message: "",
   });
 
-  // Estado local para manejo seguro de errores
-  const [hasError, setHasError] = useState(false);
+  // Estado local para el skeleton
   const [showSkeleton, setShowSkeleton] = useState(true);
 
-  // Determinar si mostrar productos reales o banner
-  let productosMostrar = [];
-  let mostrarBanner = true;
+  // 1. Validar si 'productos' es un arreglo real
+  const esArregloValido = Array.isArray(productos);
 
-  if (!hasError && !isLoading && error) {
-    setHasError(true);
-    console.warn("Error al cargar productos destacados:", error);
-  } else if (!isLoading && productos.length > 0) {
-    productosMostrar = productos;
-    mostrarBanner = false;
-  }
+  // 2. Lógica calculada usando useMemo (Evita renders infinitos)
+  const { productosMostrar, mostrarBanner } = useMemo(() => {
+    if (isLoading || error || !esArregloValido || productos.length === 0) {
+      return { productosMostrar: [], mostrarBanner: true };
+    }
+    return { productosMostrar: productos, mostrarBanner: false };
+  }, [productos, isLoading, error, esArregloValido]);
 
-  // Ocultar skeleton después de 300ms o cuando haya datos
+  // 3. Manejo controlado del log de errores en un useEffect legítimo
   useEffect(() => {
-    if (!isLoading && (productos?.length >= 0 || hasError || error)) {
+    if (error) {
+      console.warn("Error al cargar productos destacados:", error);
+    }
+  }, [error]);
+
+  // 4. Ocultar skeleton con temporizador seguro
+  useEffect(() => {
+    if (!isLoading) {
       const timer = setTimeout(() => setShowSkeleton(false), 300);
       return () => clearTimeout(timer);
     }
-  }, [isLoading, productos?.length, hasError, error]);
+  }, [isLoading]);
 
   // Skeleton UI para productos
   const renderSkeletonProductos = () => (
@@ -402,7 +407,7 @@ const Home = () => {
                   </div>
 
                   {/* Badge de error (solo si hay error real) */}
-                  {(hasError || error) && (
+                  {error && (
                     <div className="mt-6 p-3 bg-blue-100 rounded-md text-center">
                       <div className="flex items-center justify-center gap-2 text-primario text-sm">
                         <AlertCircle
@@ -421,21 +426,24 @@ const Home = () => {
             )}
 
             {/* GRID DE PRODUCTOS - Solo cuando hay productos reales */}
-            {!showSkeleton && !mostrarBanner && productosMostrar.length > 0 && (
-              <div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                  {Array.isArray(productosMostrar) &&
-                    productosMostrar.map((producto, index) => (
-                      <ProductCard key={producto.id || index} {...producto} />
-                    ))}
-                </div>
-                <div className="container mx-auto px-4 text-center pt-10">
-                  <Link to="/auth">
-                    <button className="bg-primario hover:bg-secundario text-txtBlanco font-bold text-base md:text-lg px-6 py-2 rounded-md shadow-lg transition-all duration-300 items-center gap-2 transform hover:scale-105 active:scale-95 mt-6">
-                      Ir a la tienda
-                    </button>
-                  </Link>
-                </div>
+            {showSkeleton ? (
+              renderSkeletonProductos()
+            ) : mostrarBanner ? (
+              /* Muestra el banner por defecto si no hay productos, hay error o está vacío */
+              <div className="w-full rounded-md overflow-hidden shadow-md mt-6">
+                <img
+                  src={banner_productos}
+                  alt="Nuestros Productos"
+                  className="w-full h-auto object-cover"
+                />
+              </div>
+            ) : (
+              /* Muestra la cuadrícula de productos de forma segura */
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 pt-10">
+                {Array.isArray(productosMostrar) &&
+                  productosMostrar.map((producto, index) => (
+                    <ProductCard key={producto.id || index} {...producto} />
+                  ))}
               </div>
             )}
           </div>
