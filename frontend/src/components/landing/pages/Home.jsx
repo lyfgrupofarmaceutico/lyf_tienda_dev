@@ -321,7 +321,7 @@ const Home = () => {
         </section>
 
         {/* Seccion - Productos destacados */}
-        <section className="py-10 bg-bgSecundario">
+        <section className="pt-10 pb-5 bg-bgSecundario">
           <div className="container mx-auto px-4 md:px-8">
             <div className="max-w-3xl mx-auto text-center mb-10">
               <h1 className="text-primario text-3xl md:text-4xl font-bold">
@@ -332,20 +332,13 @@ const Home = () => {
               </p>
             </div>
 
-            {/* SKELETON UI */}
-            {showSkeleton && (
-              <div className="max-w-6xl mx-auto mb-10">
-                {renderSkeletonProductos()}
-              </div>
-            )}
-
             {/* BANNER - Solo cuando NO hay productos reales */}
             {!showSkeleton && mostrarBanner && (
-              <div className="mx-auto mb-5">
+              <div className="max-w-6xl mx-auto">
                 <div className="bg-bgPrimario rounded-md p-6 md:p-8">
                   <div className="flex flex-col md:flex-row items-center gap-6">
                     <div className="md:w-1/2">
-                      <div className="flex items-center gap-3 mb-4">
+                      <div className="flex items-center gap-3 mb-5">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           className="h-8 w-8 text-primario"
@@ -393,7 +386,7 @@ const Home = () => {
                     </div>
 
                     {/* Imagen decorativa del equipo (mejor UX que texto plano) */}
-                    <div className="md:w-1/2 flex justify-center">
+                    <div className="md:w-1/2">
                       <div className="relative">
                         <div className="absolute -inset-4 bg-primario/10 rounded-md blur-2xl" />
                         <img
@@ -407,27 +400,27 @@ const Home = () => {
                   </div>
 
                   {/* Badge de error (solo si hay error real) */}
-                  {error && (
-                    <div className="mt-6 p-3 bg-blue-100 rounded-md text-center">
-                      <div className="flex items-center justify-center gap-2 text-primario text-sm">
-                        <AlertCircle
-                          className="h-4 w-4 flex-shrink-0"
-                          aria-hidden="true"
-                        />
-                        <span>
-                          No pudimos cargar nuestros productos destacados.
-                          Explora nuestros catálogos completos iniciando sesión.
-                        </span>
-                      </div>
+                  <div className="mt-6 p-3 bg-blue-100 rounded-md text-center">
+                    <div className="flex items-center justify-center gap-2 text-primario text-sm">
+                      <AlertCircle
+                        className="h-4 w-4 flex-shrink-0"
+                        aria-hidden="true"
+                      />
+                      <span>
+                        Explora nuestros catálogos completos creando una cuenta
+                        e iniciando sesión.
+                      </span>
                     </div>
-                  )}
+                  </div>
                 </div>
               </div>
             )}
 
             {/* GRID DE PRODUCTOS - Solo cuando hay productos reales */}
             {showSkeleton ? (
-              renderSkeletonProductos()
+              <div className="max-w-6xl mx-auto mb-10">
+                {renderSkeletonProductos()}
+              </div>
             ) : (
               /* Muestra la cuadrícula de productos de forma segura */
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 pt-10">
