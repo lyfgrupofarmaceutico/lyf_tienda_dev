@@ -7,7 +7,6 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.decorators import action
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.throttling import AnonRateThrottle, UserRateThrottle
-from django.views.decorators.cache import cache_page
 from django.utils.decorators import method_decorator
 from django.utils.http import urlsafe_base64_decode
 from django.utils.encoding import smart_str, DjangoUnicodeDecodeError
@@ -18,6 +17,7 @@ from .throttles import (
     PromocionPublicoRateThrottle,
     ContactoRateThrottle,
 )
+from .decorators import cache_page_server_only
 from .utils import *
 from .models import *
 from .serializers import *
@@ -219,17 +219,6 @@ class PasswordResetConfirmView(GenericAPIView):
 # =====================================
 # VIEW NUEVA CONTRASEÑA
 # =====================================
-# class SetNewPasswordView(GenericAPIView):
-#     serializer_class = SetNewPasswordSerializer
-
-
-#     def patch(self, request):
-#         serializer = self.serializer_class(data=request.data)
-#         serializer.is_valid(raise_exception=True)
-#         return Response(
-#             {"message": "Contraseña actualizada exitosamente."},
-#             status=status.HTTP_200_OK,
-#         )
 class SetNewPasswordView(GenericAPIView):
     serializer_class = SetNewPasswordSerializer
 
@@ -340,75 +329,6 @@ class UserViewSet(viewsets.ModelViewSet):
         return Response(serializer.data)
 
 
-# ======================
-# PORTAFOLIO VIEWS
-# ======================
-# class PortafolioViewSet(viewsets.ModelViewSet):
-#     permission_classes = [IsAdminOnly]
-#     queryset = Portafolio.objects.all()
-#     serializer_class = PortafolioSerializer
-
-#     def perform_create(self, serializer):
-#         instancia = serializer.save()
-#         AuditoriaCambio.objects.create(
-#             user=self.request.user,
-#             accion="PORTAFOLIO_CREADO",
-#             tipo_objeto="Portafolio",
-#             id_objeto=instancia.id,
-#             datos={"nombre": instancia.nombre},
-#         )
-
-#     def perform_update(self, serializer):
-#         # Instancia antes de actualizar
-#         old_instance = self.get_object()
-
-#         # Eliminar imágenes o archivos anteriores si se están subiendo nuevos
-#         if "logo" in serializer.validated_data:
-#             if old_instance.logo:
-#                 old_instance.logo.delete()
-#         if "banner" in serializer.validated_data:
-#             if old_instance.banner:
-#                 old_instance.banner.delete()
-#         if "catalogo_pdf" in serializer.validated_data:
-#             if old_instance.catalogo_pdf:
-#                 old_instance.catalogo_pdf.delete()
-
-#         # Guardar la instancia con las nuevas imágenes
-#         instancia = serializer.save()
-
-#         # Crear registro de auditoría
-#         AuditoriaCambio.objects.create(
-#             user=self.request.user,
-#             accion="PORTAFOLIO_ACTUALIZADO",
-#             tipo_objeto="Portafolio",
-#             id_objeto=instancia.id,
-#             datos={"nombre": instancia.nombre},
-#         )
-
-#     def perform_destroy(self, instancia):
-#         # Instancia antes de eliminar
-#         old_instance = self.get_object()
-
-#         # Eliminar imágenes o archivos antes de eliminar
-#         if "logo" in serializer.validated_data:
-#             if old_instance.logo:
-#                 old_instance.logo.delete()
-#         if "banner" in serializer.validated_data:
-#             if old_instance.banner:
-#                 old_instance.banner.delete()
-#         if "catalogo_pdf" in serializer.validated_data:
-#             if old_instance.catalogo_pdf:
-#                 old_instance.catalogo_pdf.delete()
-
-
-#         AuditoriaCambio.objects.create(
-#             user=self.request.user,
-#             accion="PORTAFOLIO_ELIMINADO",
-#             tipo_objeto="Portafolio",
-#             id_objeto=instancia.id,
-#             datos={"nombre": instancia.nombre},
-#         )
-#         instancia.delete()
 class PortafolioViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAdminOnly]
     queryset = Portafolio.objects.all()
@@ -450,7 +370,7 @@ class PortafolioViewSet(viewsets.ModelViewSet):
 # ==========================
 # Cacheamos la vista publica por 24 HORAS
 @method_decorator(
-    cache_page(60 * 60 * 24, key_prefix="portafolio_cache"), name="dispatch"
+    cache_page_server_only(60 * 60 * 24, key_prefix="portafolio_cache"), name="dispatch"
 )
 class PortafolioPublicoViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated, IsAdminOrReadOnly]
@@ -526,7 +446,7 @@ class ProductoViewSet(viewsets.ModelViewSet):
 # =========================
 # Cacheamos la vista pública por 24 HORAS
 @method_decorator(
-    cache_page(60 * 60 * 24, key_prefix="producto_cache"), name="dispatch"
+    cache_page_server_only(60 * 60 * 24, key_prefix="producto_cache"), name="dispatch"
 )
 class ProductoConRolViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated, IsAdminOrReadOnly]
@@ -563,14 +483,14 @@ class ProductoConRolViewSet(viewsets.ModelViewSet):
 # ===================================
 # Cacheamos la vista publica por 24 HORAS
 @method_decorator(
-    cache_page(60 * 60 * 24, key_prefix="producto_cache"), name="dispatch"
+    cache_page_server_only(60 * 60 * 24, key_prefix="producto_cache"), name="dispatch"
 )
 class ProductoPublicoViewSet(viewsets.ReadOnlyModelViewSet):
     permission_classes = [AllowAny]
 
     # Aplicar throttling
-    throttle_classes = [ProductoPublicoRateThrottle]  # Usar custom
-    throttle_scope = "producto_publico"  # Nombre del scope definido en settings
+    throttle_classes = [ProductoPublicoRateThrottle] 
+    throttle_scope = "producto_publico" 
 
     queryset = Producto.objects.filter(
         activo=True, destacado=True, tipo_usuario="general", portafolio__activo=True
@@ -620,14 +540,14 @@ class PromocionViewSet(viewsets.ModelViewSet):
 # =========================
 # Cacheamos la vista publica por 24 HORAS
 @method_decorator(
-    cache_page(60 * 60 * 24, key_prefix="promocion_cache"), name="dispatch"
+    cache_page_server_only(60 * 60 * 24, key_prefix="promocion_cache"), name="dispatch"
 )
 class PromocionPublicoViewSet(viewsets.ReadOnlyModelViewSet):
     permission_classes = [AllowAny]
 
     # Aplicar throttling
-    throttle_classes = [PromocionPublicoRateThrottle]  # Usar custom
-    throttle_scope = "promocion_publico"  # Nombre del scope definido en settings
+    throttle_classes = [PromocionPublicoRateThrottle] 
+    throttle_scope = "promocion_publico" 
 
     queryset = Promocion.objects.filter(activo=True)
     serializer_class = PromocionPublicoSerializer
@@ -676,7 +596,7 @@ class CursoViewSet(viewsets.ModelViewSet):
 # CURSO PUBLICO VIEWS
 # ======================
 # Cacheamos la vista publica por 24 HORAS
-@method_decorator(cache_page(60 * 60 * 24, key_prefix="curso_cache"), name="dispatch")
+@method_decorator(cache_page_server_only(60 * 60 * 24, key_prefix="curso_cache"), name="dispatch")
 class CursoPublicoViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated, IsAdminOrReadOnly]
     queryset = Curso.objects.filter(activo=True)
