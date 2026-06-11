@@ -29,8 +29,8 @@ export const useAdminPortafolios = () => {
       }));
     },
     enabled: !!token,
-    staleTime: 1000 * 30,
-    cacheTime: 1000 * 60 * 5,
+    staleTime: 1000 * 60 * 5,
+    gcTime: 1000 * 60 * 10,
     retry: 1,
   });
 
@@ -45,8 +45,6 @@ export const useAdminPortafolios = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["admin-portafolios"] });
-      queryClient.invalidateQueries({ queryKey: ["portafolios-dashboard"] });
-      queryClient.invalidateQueries({ queryKey: ["productos-dashboard"] });
     },
   });
 
@@ -61,8 +59,6 @@ export const useAdminPortafolios = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["admin-portafolios"] });
-      queryClient.invalidateQueries({ queryKey: ["portafolios-dashboard"] });
-      queryClient.invalidateQueries({ queryKey: ["productos-dashboard"] });
     },
   });
 
@@ -73,8 +69,6 @@ export const useAdminPortafolios = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["admin-portafolios"] });
-      queryClient.invalidateQueries({ queryKey: ["portafolios-dashboard"] });
-      queryClient.invalidateQueries({ queryKey: ["productos-dashboard"] });
     },
   });
 

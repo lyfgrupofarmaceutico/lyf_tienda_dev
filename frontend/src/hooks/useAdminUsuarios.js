@@ -32,10 +32,9 @@ export const useAdminUsuarios = () => {
       }));
     },
     enabled: !!token,
-    staleTime: 1000 * 30,
-    cacheTime: 1000 * 60 * 5,
+    staleTime: 1000 * 60 * 5,
+    gcTime: 1000 * 60 * 10,
     retry: 1,
-    retryDelay: 1000,
   });
 
   // MUTATION: CAMBIAR ROL DE USUARIO

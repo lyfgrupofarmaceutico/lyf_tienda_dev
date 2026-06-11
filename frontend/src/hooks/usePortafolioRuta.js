@@ -20,9 +20,11 @@ export const usePortafolioRuta = (ruta) => {
     },
 
     enabled: !!ruta && !!token,
-    staleTime: 0,
-    cacheTime: 0,
-    refetchOnMount: true,
+    // Caché
+    staleTime: 1000 * 60 * 5,
+    gcTime: 1000 * 60 * 10,
+
+    // Refetch
     refetchOnWindowFocus: true,
     retry: 1,
     retryDelay: 1000,

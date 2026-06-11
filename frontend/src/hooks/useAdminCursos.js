@@ -25,8 +25,8 @@ export const useAdminCursos = () => {
       }));
     },
     enabled: !!token,
-    staleTime: 1000 * 30,
-    cacheTime: 1000 * 60 * 5,
+    staleTime: 1000 * 60 * 5,
+    gcTime: 1000 * 60 * 10,
     retry: 1,
   });
 
@@ -38,7 +38,6 @@ export const useAdminCursos = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["admin-cursos"] });
-      queryClient.invalidateQueries({ queryKey: ["cursos-dashboard"] });
     },
   });
 
@@ -50,7 +49,6 @@ export const useAdminCursos = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["admin-cursos"] });
-      queryClient.invalidateQueries({ queryKey: ["cursos-dashboard"] });
     },
   });
 
@@ -61,7 +59,6 @@ export const useAdminCursos = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["admin-cursos"] });
-      queryClient.invalidateQueries({ queryKey: ["cursos-dashboard"] });
     },
   });
 

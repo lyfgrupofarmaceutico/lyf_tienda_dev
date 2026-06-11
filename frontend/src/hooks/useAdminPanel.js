@@ -51,10 +51,8 @@ export const useAdminPanel = () => {
       };
     },
     enabled: !!token,
-    staleTime: 0,
-    cacheTime: 0,
-    refetchOnMount: true,
-    refetchOnWindowFocus: true,
+    staleTime: 1000 * 60 * 5,
+    gcTime: 1000 * 60 * 10,
     retry: 1,
   });
 };

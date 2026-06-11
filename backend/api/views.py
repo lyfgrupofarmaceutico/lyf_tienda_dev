@@ -368,9 +368,9 @@ class PortafolioViewSet(viewsets.ModelViewSet):
 # ==========================
 # PORTAFOLIO PUBLICO VIEWS
 # ==========================
-# Cacheamos la vista publica por 24 HORAS
+# Cacheamos la vista publica por 10 minutos
 @method_decorator(
-    cache_page_server_only(60 * 60 * 24, key_prefix="portafolio_cache"), name="dispatch"
+    cache_page_server_only(60 * 10, key_prefix="portafolio_cache"), name="dispatch"
 )
 class PortafolioPublicoViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated, IsAdminOrReadOnly]
@@ -444,9 +444,9 @@ class ProductoViewSet(viewsets.ModelViewSet):
 # =========================
 # PRODUCTO CON ROL VIEWS
 # =========================
-# Cacheamos la vista pública por 24 HORAS
+# Cacheamos la vista pública por 10 minutos
 @method_decorator(
-    cache_page_server_only(60 * 60 * 24, key_prefix="producto_cache"), name="dispatch"
+    cache_page_server_only(60 * 10, key_prefix="producto_cache"), name="dispatch"
 )
 class ProductoConRolViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated, IsAdminOrReadOnly]
@@ -481,16 +481,16 @@ class ProductoConRolViewSet(viewsets.ModelViewSet):
 # ===================================
 # PRODUCTO PUBLICO DESTACADO VIEWS
 # ===================================
-# Cacheamos la vista publica por 24 HORAS
+# Cacheamos la vista publica por 10 minutos
 @method_decorator(
-    cache_page_server_only(60 * 60 * 24, key_prefix="producto_cache"), name="dispatch"
+    cache_page_server_only(60 * 10, key_prefix="producto_cache"), name="dispatch"
 )
 class ProductoPublicoViewSet(viewsets.ReadOnlyModelViewSet):
     permission_classes = [AllowAny]
 
     # Aplicar throttling
-    throttle_classes = [ProductoPublicoRateThrottle] 
-    throttle_scope = "producto_publico" 
+    throttle_classes = [ProductoPublicoRateThrottle]
+    throttle_scope = "producto_publico"
 
     queryset = Producto.objects.filter(
         activo=True, destacado=True, tipo_usuario="general", portafolio__activo=True
@@ -538,16 +538,16 @@ class PromocionViewSet(viewsets.ModelViewSet):
 # ========================
 # PROMOCION PUBLICO VIEWS
 # =========================
-# Cacheamos la vista publica por 24 HORAS
+# Cacheamos la vista publica por 10 minutos
 @method_decorator(
-    cache_page_server_only(60 * 60 * 24, key_prefix="promocion_cache"), name="dispatch"
+    cache_page_server_only(60 * 10, key_prefix="promocion_cache"), name="dispatch"
 )
 class PromocionPublicoViewSet(viewsets.ReadOnlyModelViewSet):
     permission_classes = [AllowAny]
 
     # Aplicar throttling
-    throttle_classes = [PromocionPublicoRateThrottle] 
-    throttle_scope = "promocion_publico" 
+    throttle_classes = [PromocionPublicoRateThrottle]
+    throttle_scope = "promocion_publico"
 
     queryset = Promocion.objects.filter(activo=True)
     serializer_class = PromocionPublicoSerializer
@@ -595,8 +595,10 @@ class CursoViewSet(viewsets.ModelViewSet):
 # ======================
 # CURSO PUBLICO VIEWS
 # ======================
-# Cacheamos la vista publica por 24 HORAS
-@method_decorator(cache_page_server_only(60 * 60 * 24, key_prefix="curso_cache"), name="dispatch")
+# Cacheamos la vista publica por 10 minutos
+@method_decorator(
+    cache_page_server_only(60 * 10, key_prefix="curso_cache"), name="dispatch"
+)
 class CursoPublicoViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated, IsAdminOrReadOnly]
     queryset = Curso.objects.filter(activo=True)
