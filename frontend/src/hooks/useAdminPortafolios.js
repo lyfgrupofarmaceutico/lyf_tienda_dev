@@ -45,6 +45,7 @@ export const useAdminPortafolios = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["admin-portafolios"] });
+      queryClient.invalidateQueries({ queryKey: ["portafolios-dashboard"] });
     },
   });
 
@@ -59,6 +60,7 @@ export const useAdminPortafolios = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["admin-portafolios"] });
+      queryClient.invalidateQueries({ queryKey: ["portafolios-dashboard"] });
     },
   });
 
@@ -69,6 +71,7 @@ export const useAdminPortafolios = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["admin-portafolios"] });
+      queryClient.invalidateQueries({ queryKey: ["portafolios-dashboard"] });
     },
   });
 
