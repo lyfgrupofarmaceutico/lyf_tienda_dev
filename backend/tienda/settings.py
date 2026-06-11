@@ -357,6 +357,7 @@ if not DEBUG and env("AWS_S3_ENDPOINT_URL", default=None):
     # Variables para generar urls publicas para los archivos
     AWS_S3_CUSTOM_DOMAIN = env("AWS_S3_CUSTOM_DOMAIN", default=None)
     AWS_S3_URL_PROTOCOL = "https"
+    MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/"
 
     AWS_S3_OBJECT_PARAMETERS = {
         "CacheControl": "max-age=86400",
