@@ -353,6 +353,11 @@ if not DEBUG and env("AWS_S3_ENDPOINT_URL", default=None):
     AWS_ACCESS_KEY_ID = env("AWS_ACCESS_KEY_ID")
     AWS_SECRET_ACCESS_KEY = env("AWS_SECRET_ACCESS_KEY")
     AWS_S3_REGION_NAME = env("AWS_S3_REGION_NAME", default="us-east-1")
+
+    # Variables para generar urls publicas para los archivos
+    AWS_S3_CUSTOM_DOMAIN = env("AWS_S3_CUSTOM_DOMAIN", default=None)
+    AWS_S3_URL_PROTOCOL = "https"
+
     AWS_S3_OBJECT_PARAMETERS = {
         "CacheControl": "max-age=86400",
     }
