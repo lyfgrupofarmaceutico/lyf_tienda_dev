@@ -361,8 +361,8 @@ if not DEBUG and env("AWS_S3_ENDPOINT_URL", default=None):
     AWS_DEFAULT_ACL = "public-read"
     AWS_S3_OBJECT_PARAMETERS = {"CacheControl": "max-age=86400"}
     AWS_S3_SECURE_URLS = os.environ.get("AWS_S3_SECURE_URLS", "False") == "True"
-    AWS_S3_CUSTOM_DOMAIN = env("AWS_S3_CUSTOM_DOMAIN", default=None)
     AWS_S3_ADDRESSING_STYLE = "path"
+    AWS_S3_CUSTOM_DOMAIN = env("AWS_S3_CUSTOM_DOMAIN", default=None)
 
     # Timeout para evitar bloqueos infinitos
     AWS_S3_MAX_MEMORY_SIZE = 20 * 1024 * 1024
