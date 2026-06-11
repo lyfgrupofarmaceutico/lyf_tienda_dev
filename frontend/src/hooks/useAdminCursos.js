@@ -38,6 +38,7 @@ export const useAdminCursos = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["admin-cursos"] });
+      queryClient.invalidateQueries({ queryKey: ["cursos-dashboard"] });
     },
   });
 
@@ -49,6 +50,7 @@ export const useAdminCursos = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["admin-cursos"] });
+      queryClient.invalidateQueries({ queryKey: ["cursos-dashboard"] });
     },
   });
 
@@ -59,6 +61,7 @@ export const useAdminCursos = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["admin-cursos"] });
+      queryClient.invalidateQueries({ queryKey: ["cursos-dashboard"] });
     },
   });
 

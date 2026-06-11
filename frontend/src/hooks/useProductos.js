@@ -15,10 +15,10 @@ export const useProductos = () => {
     },
 
     enabled: !!token,
-    // staleTime: 0,
-    // cacheTime: 0,
-    // refetchOnMount: true,
-    // refetchOnWindowFocus: true,
+    staleTime: 0,
+    cacheTime: 0,
+    refetchOnMount: true,
+    refetchOnWindowFocus: true,
     retry: 1,
     retryDelay: 1000,
   });

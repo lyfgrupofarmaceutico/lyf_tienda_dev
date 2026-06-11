@@ -12,10 +12,10 @@ export const useProductosLanding = () => {
       return response.data;
     },
 
-    // staleTime: 0,
-    // cacheTime: 0,
-    // refetchOnMount: true,
-    // refetchOnWindowFocus: false,
+    staleTime: 0,
+    cacheTime: 0,
+    refetchOnMount: true,
+    refetchOnWindowFocus: false,
     retry: 1,
     retryDelay: 1000,
   });

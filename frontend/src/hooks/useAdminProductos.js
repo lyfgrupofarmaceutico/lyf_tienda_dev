@@ -51,6 +51,8 @@ export const useAdminProductos = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["admin-products"] });
+      queryClient.invalidateQueries({ queryKey: ["productos-dashboard"] });
+      queryClient.invalidateQueries({ queryKey: ["productos-landing"] });
     },
   });
 
@@ -64,6 +66,8 @@ export const useAdminProductos = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["admin-products"] });
+      queryClient.invalidateQueries({ queryKey: ["productos-dashboard"] });
+      queryClient.invalidateQueries({ queryKey: ["productos-landing"] });
     },
   });
 
@@ -73,6 +77,8 @@ export const useAdminProductos = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["admin-products"] });
+      queryClient.invalidateQueries({ queryKey: ["productos-dashboard"] });
+      queryClient.invalidateQueries({ queryKey: ["productos-landing"] });
     },
   });
 

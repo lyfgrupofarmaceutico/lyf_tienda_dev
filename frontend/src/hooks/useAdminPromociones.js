@@ -40,6 +40,7 @@ export const useAdminPromociones = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["admin-promociones"] });
+      queryClient.invalidateQueries({ queryKey: ["promociones-landing"] });
     },
   });
 
@@ -54,6 +55,7 @@ export const useAdminPromociones = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["admin-promociones"] });
+      queryClient.invalidateQueries({ queryKey: ["promociones-landing"] });
     },
   });
 
@@ -64,6 +66,7 @@ export const useAdminPromociones = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["admin-promociones"] });
+      queryClient.invalidateQueries({ queryKey: ["promociones-landing"] });
     },
   });
 
