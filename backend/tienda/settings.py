@@ -348,23 +348,23 @@ if not DEBUG and env("AWS_S3_ENDPOINT_URL", default=None):
     STORAGES["default"] = {
         "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
     }
+
+    # Credenciales
     AWS_S3_ENDPOINT_URL = env("AWS_S3_ENDPOINT_URL")
     AWS_STORAGE_BUCKET_NAME = env("AWS_STORAGE_BUCKET_NAME")
     AWS_ACCESS_KEY_ID = env("AWS_ACCESS_KEY_ID")
     AWS_SECRET_ACCESS_KEY = env("AWS_SECRET_ACCESS_KEY")
     AWS_S3_REGION_NAME = env("AWS_S3_REGION_NAME", default="us-east-1")
 
-    # Variables para generar urls publicas para los archivos
-    AWS_S3_CUSTOM_DOMAIN = env("AWS_S3_CUSTOM_DOMAIN", default=None)
-    AWS_S3_URL_PROTOCOL = "https"
-    MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/"
-
-    AWS_S3_OBJECT_PARAMETERS = {
-        "CacheControl": "max-age=86400",
-    }
-    AWS_DEFAULT_ACL = None  # ⚠️ MinIO no soporta ACLs
+    # Comportamiento de URLs y permisos
     AWS_QUERYSTRING_AUTH = False
-    AWS_S3_FILE_OVERWRITE = False
+    AWS_DEFAULT_ACL = "public-read"
+    AWS_S3_OBJECT_PARAMETERS = {"CacheControl": "max-age=86400"}
+    AWS_S3_SECURE_URLS = os.environ.get("AWS_S3_SECURE_URLS", "False") == "True"
+    AWS_S3_ADDRESSING_STYLE = "path"
+
+    # Timeout para evitar bloqueos infinitos
+    AWS_S3_MAX_MEMORY_SIZE = 20 * 1024 * 1024
 else:
     STORAGES["default"] = {
         "BACKEND": "django.core.files.storage.FileSystemStorage",
