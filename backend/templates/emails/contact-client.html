@@ -2,60 +2,270 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <title>Respuesta automática</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>¡Gracias por contactarnos! | L&F Grupo Farmacéutico</title>
     <style>
+      /* Reset de estilos para clientes de correo */
+      body,
+      table,
+      td,
+      a {
+        -webkit-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+      }
+      table,
+      td {
+        mso-table-lspace: 0pt;
+        mso-table-rspace: 0pt;
+      }
+      img {
+        -ms-interpolation-mode: bicubic;
+        border: 0;
+        height: auto;
+        line-height: 100%;
+        outline: none;
+        text-decoration: none;
+      }
       body {
-        font-family: sans-serif;
-        background-color: #f3f4f6;
-        margin: 0;
-        padding: 0;
+        height: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+        background-color: #f4f7f6;
       }
-      .container {
-        background-color: #ffffff;
-        max-width: 600px;
-        margin: 0 auto;
-        padding: 0;
-      }
-      .heading {
-        background-color: #1c5c9c;
-        color: #ffffff;
-        font-size: 1rem;
-        font-weight: bold;
-        text-align: center;
-        padding: 1rem 0;
-        margin-bottom: 1rem;
-      }
-      .text {
-        color: #374151;
-        margin: 0.5rem 1rem;
-        padding-top: 0.8rem;
-        font-size: 1rem;
-      }
-      .text strong {
-        font-weight: bold;
-      }
-      .text-secondary {
-        color: #4b5563;
-        margin: 1rem;
-        text-align: center;
-        font-size: 0.8rem;
+
+      /* Estilos responsivos */
+      @media screen and (max-width: 600px) {
+        .email-container {
+          width: 100% !important;
+          margin: 0 !important;
+        }
+        .content-padding {
+          padding: 24px 20px !important;
+        }
+        .mobile-font {
+          font-size: 14px !important;
+        }
+        .signature-name {
+          font-size: 16px !important;
+        }
       }
     </style>
   </head>
-  <body>
-    <div class="container">
-      <div class="heading">🚀 ¡Gracias por contactarnos!</div>
-      <p class="text">👋 Hola <strong>{{fullname}}</strong>,</p>
-      <p class="text">
-        Revisaremos tu mensaje con toda la atención que merece. Nos pondremos en
-        contacto contigo lo mas pronto posible 🚀.
-      </p>
-      <p class="text">Un cordial saludo,</p>
-      <p class="text">
-        Marly Tatiana Victoria Urrutia <br />
-        <span style="font-weight: bold">Gerente Comercial</span>
-      </p>
-      <p class="text-secondary">📧 Este correo fue generado automáticamente.</p>
-    </div>
+  <body
+    style="
+      margin: 0;
+      padding: 0;
+      background-color: #f4f7f6;
+      font-family: &quot;Segoe UI&quot;, Tahoma, Geneva, Verdana, sans-serif;
+    "
+  >
+    <!-- Contenedor Principal -->
+    <table
+      role="presentation"
+      border="0"
+      cellpadding="0"
+      cellspacing="0"
+      width="100%"
+      style="background-color: #f4f7f6"
+    >
+      <tr>
+        <td align="center" style="padding: 40px 10px">
+          <table
+            role="presentation"
+            border="0"
+            cellpadding="0"
+            cellspacing="0"
+            width="600"
+            class="email-container"
+            style="
+              background-color: #ffffff;
+              border-radius: 8px;
+              overflow: hidden;
+              box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            "
+          >
+            <!-- Barra de acento superior -->
+            <tr>
+              <td height="6" style="background-color: #1c5c9c"></td>
+            </tr>
+
+            <!-- Encabezado con título -->
+            <tr>
+              <td
+                align="center"
+                style="background-color: #1c5c9c; padding: 24px 20px"
+              >
+                <h1
+                  style="
+                    margin: 0;
+                    font-size: 22px;
+                    font-weight: 700;
+                    color: #ffffff;
+                    letter-spacing: -0.3px;
+                  "
+                >
+                  🚀 ¡Gracias por contactarnos!
+                </h1>
+              </td>
+            </tr>
+
+            <!-- Contenido Principal -->
+            <tr>
+              <td class="content-padding" style="padding: 32px 40px 20px 40px">
+                <p
+                  class="mobile-font"
+                  style="
+                    margin: 0 0 20px 0;
+                    font-size: 16px;
+                    color: #374151;
+                    line-height: 1.6;
+                  "
+                >
+                  👋 Hola,
+                  <strong style="color: #111827">{{ fullname }}</strong>:
+                </p>
+
+                <p
+                  class="mobile-font"
+                  style="
+                    margin: 0 0 20px 0;
+                    font-size: 15px;
+                    color: #4b5563;
+                    line-height: 1.7;
+                  "
+                >
+                  Hemos recibido tu mensaje correctamente y queremos agradecerte
+                  por confiar en
+                  <strong style="color: #1c5c9c">L&F Grupo Farmacéutico</strong
+                  >. Nuestro equipo lo revisará con toda la atención que merece.
+                </p>
+
+                <!-- Caja de información de tiempos -->
+                <table
+                  role="presentation"
+                  border="0"
+                  cellpadding="0"
+                  cellspacing="0"
+                  width="100%"
+                  style="
+                    background-color: #eff6ff;
+                    border-left: 4px solid #1c5c9c;
+                    border-radius: 4px;
+                    margin: 24px 0;
+                  "
+                >
+                  <tr>
+                    <td style="padding: 16px 20px">
+                      <p
+                        style="
+                          margin: 0;
+                          font-size: 14px;
+                          color: #1e40af;
+                          line-height: 1.5;
+                        "
+                      >
+                        ⏱️ <strong>¿Cuándo te contactaremos?</strong><br />
+                        Nuestro equipo comercial se pondrá en contacto contigo
+                        en un plazo máximo de
+                        <strong>24 horas hábiles</strong> para atender tu
+                        requerimiento.
+                      </p>
+                    </td>
+                  </tr>
+                </table>
+
+                <p
+                  class="mobile-font"
+                  style="
+                    margin: 24px 0 8px 0;
+                    font-size: 15px;
+                    color: #4b5563;
+                    line-height: 1.6;
+                  "
+                >
+                  Un cordial saludo,
+                </p>
+
+                <!-- Firma -->
+                <table
+                  role="presentation"
+                  border="0"
+                  cellpadding="0"
+                  cellspacing="0"
+                  style="margin-top: 8px"
+                >
+                  <tr>
+                    <td
+                      style="border-top: 2px solid #e5e7eb; padding-top: 16px"
+                    >
+                      <p
+                        class="signature-name"
+                        style="
+                          margin: 0 0 4px 0;
+                          font-size: 17px;
+                          font-weight: 700;
+                          color: #111827;
+                        "
+                      >
+                        Marly Tatiana Victoria Urrutia
+                      </p>
+                      <p
+                        style="
+                          margin: 0 0 4px 0;
+                          font-size: 14px;
+                          color: #1c5c9c;
+                          font-weight: 600;
+                        "
+                      >
+                        Gerente Comercial
+                      </p>
+                      <p style="margin: 0; font-size: 13px; color: #6b7280">
+                        L&F Grupo Farmacéutico
+                      </p>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+            <!-- Footer -->
+            <tr>
+              <td
+                align="center"
+                style="
+                  background-color: #f9fafb;
+                  padding: 24px 20px;
+                  border-top: 1px solid #e5e7eb;
+                "
+              >
+                <p
+                  style="
+                    margin: 0 0 6px 0;
+                    font-size: 12px;
+                    color: #9ca3af;
+                    line-height: 1.5;
+                  "
+                >
+                  📧 Este correo fue generado automáticamente, por favor no
+                  respondas a este mensaje.
+                </p>
+                <p
+                  style="
+                    margin: 0;
+                    font-size: 12px;
+                    color: #9ca3af;
+                    line-height: 1.5;
+                  "
+                >
+                  © 2026 L&F Grupo Farmacéutico. Todos los derechos reservados.
+                </p>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
   </body>
 </html>

@@ -2,70 +2,429 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <title>Nuevo mensaje de contacto</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Nuevo mensaje de contacto | L&F Grupo Farmacéutico</title>
     <style>
+      /* Reset de estilos para clientes de correo */
+      body,
+      table,
+      td,
+      a {
+        -webkit-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+      }
+      table,
+      td {
+        mso-table-lspace: 0pt;
+        mso-table-rspace: 0pt;
+      }
+      img {
+        -ms-interpolation-mode: bicubic;
+        border: 0;
+        height: auto;
+        line-height: 100%;
+        outline: none;
+        text-decoration: none;
+      }
       body {
-        font-family: sans-serif;
-        background-color: #1c5c9c;
-        margin: 0;
-        padding: 0;
+        height: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+        background-color: #f4f7f6;
       }
-      .container {
-        background-color: #ffffff;
-        max-width: 600px;
-        margin: 0 auto;
-        padding: 0;
-      }
-      .heading {
-        background-color: #1c5c9c;
-        color: #ffffff;
-        font-size: 1rem;
-        font-weight: bold;
-        text-align: center;
-        padding: 1rem 0;
-        margin-bottom: 1rem;
-      }
-      .field {
-        color: #374151;
-        margin: 0.5rem 1rem;
-        font-size: 1rem;
-      }
-      .field strong {
-        font-weight: bold;
-        color: #111827;
-      }
-      .message {
-        background-color: #f9fafb;
-        border: 1px solid #1c5c9c;
-        border-radius: 0.375rem;
-        padding: 1rem;
-        margin: 1rem;
-        color: #374151;
-        font-size: 1rem;
-      }
-      .footer {
-        color: #4b5563;
-        font-size: 0.8rem;
-        margin: 1rem;
-        text-align: center;
+
+      /* Estilos responsivos */
+      @media screen and (max-width: 600px) {
+        .email-container {
+          width: 100% !important;
+          margin: 0 !important;
+        }
+        .content-padding {
+          padding: 24px 20px !important;
+        }
+        .mobile-font {
+          font-size: 14px !important;
+        }
+        .field-value {
+          font-size: 14px !important;
+        }
       }
     </style>
   </head>
-  <body>
-    <div class="container">
-      <div class="heading">🚀 Nuevo mensaje desde la página</div>
+  <body
+    style="
+      margin: 0;
+      padding: 0;
+      background-color: #f4f7f6;
+      font-family: &quot;Segoe UI&quot;, Tahoma, Geneva, Verdana, sans-serif;
+    "
+  >
+    <!-- Contenedor Principal -->
+    <table
+      role="presentation"
+      border="0"
+      cellpadding="0"
+      cellspacing="0"
+      width="100%"
+      style="background-color: #f4f7f6"
+    >
+      <tr>
+        <td align="center" style="padding: 40px 10px">
+          <table
+            role="presentation"
+            border="0"
+            cellpadding="0"
+            cellspacing="0"
+            width="600"
+            class="email-container"
+            style="
+              background-color: #ffffff;
+              border-radius: 8px;
+              overflow: hidden;
+              box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            "
+          >
+            <!-- Barra de acento superior -->
+            <tr>
+              <td height="6" style="background-color: #1c5c9c"></td>
+            </tr>
 
-      <p class="field"><strong>🎯 Nombre:</strong> {{fullname}}</p>
-      <p class="field"><strong>📧 Correo:</strong> {{email}}</p>
-      <p class="field"><strong>📞 Teléfono:</strong> {{phone}}</p>
-      <p class="field"><strong>⭐ Asunto:</strong> {{reason}}</p>
+            <!-- Encabezado con título -->
+            <tr>
+              <td
+                align="center"
+                style="background-color: #1c5c9c; padding: 24px 20px"
+              >
+                <h1
+                  style="
+                    margin: 0;
+                    font-size: 22px;
+                    font-weight: 700;
+                    color: #ffffff;
+                    letter-spacing: -0.3px;
+                  "
+                >
+                  🚀 Nuevo mensaje desde la página web
+                </h1>
+                <p style="margin: 8px 0 0 0; font-size: 13px; color: #bfdbfe">
+                  Se requiere atención del equipo comercial
+                </p>
+              </td>
+            </tr>
 
-      <div class="message">
-        <strong>✨ Mensaje:</strong><br />
-        {{message}}
-      </div>
+            <!-- Contenido Principal -->
+            <tr>
+              <td class="content-padding" style="padding: 32px 40px 20px 40px">
+                <!-- Aviso de acción requerida -->
+                <table
+                  role="presentation"
+                  border="0"
+                  cellpadding="0"
+                  cellspacing="0"
+                  width="100%"
+                  style="
+                    background-color: #fef3c7;
+                    border-left: 4px solid #f59e0b;
+                    border-radius: 4px;
+                    margin-bottom: 24px;
+                  "
+                >
+                  <tr>
+                    <td style="padding: 14px 18px">
+                      <p
+                        style="
+                          margin: 0;
+                          font-size: 14px;
+                          color: #92400e;
+                          line-height: 1.5;
+                        "
+                      >
+                        ⚠️ <strong>Acción requerida:</strong> Contactar al
+                        usuario lo antes posible para atender su requerimiento.
+                      </p>
+                    </td>
+                  </tr>
+                </table>
 
-      <p class="footer">📧 Este correo fue generado automáticamente.</p>
-    </div>
+                <!-- Datos del contacto -->
+                <h2
+                  style="
+                    margin: 0 0 16px 0;
+                    font-size: 16px;
+                    font-weight: 700;
+                    color: #111827;
+                    text-transform: uppercase;
+                    letter-spacing: 0.5px;
+                  "
+                >
+                  📋 Información del contacto
+                </h2>
+
+                <table
+                  role="presentation"
+                  border="0"
+                  cellpadding="0"
+                  cellspacing="0"
+                  width="100%"
+                  style="
+                    background-color: #f9fafb;
+                    border: 1px solid #e5e7eb;
+                    border-radius: 6px;
+                    margin-bottom: 24px;
+                  "
+                >
+                  <tr>
+                    <td style="padding: 16px 20px">
+                      <!-- Nombre -->
+                      <table
+                        role="presentation"
+                        border="0"
+                        cellpadding="0"
+                        cellspacing="0"
+                        width="100%"
+                        style="margin-bottom: 12px"
+                      >
+                        <tr>
+                          <td
+                            width="110"
+                            style="
+                              font-size: 13px;
+                              font-weight: 600;
+                              color: #6b7280;
+                              vertical-align: top;
+                            "
+                          >
+                            🎯 Nombre:
+                          </td>
+                          <td
+                            class="field-value"
+                            style="
+                              font-size: 15px;
+                              color: #111827;
+                              font-weight: 600;
+                            "
+                          >
+                            {{ fullname }}
+                          </td>
+                        </tr>
+                      </table>
+
+                      <!-- Correo -->
+                      <table
+                        role="presentation"
+                        border="0"
+                        cellpadding="0"
+                        cellspacing="0"
+                        width="100%"
+                        style="margin-bottom: 12px"
+                      >
+                        <tr>
+                          <td
+                            width="110"
+                            style="
+                              font-size: 13px;
+                              font-weight: 600;
+                              color: #6b7280;
+                              vertical-align: top;
+                            "
+                          >
+                            📧 Correo:
+                          </td>
+                          <td class="field-value" style="font-size: 15px">
+                            <a
+                              href="mailto:{{ email }}"
+                              style="color: #1c5c9c; text-decoration: none"
+                              >{{ email }}</a
+                            >
+                          </td>
+                        </tr>
+                      </table>
+
+                      <!-- Teléfono -->
+                      <table
+                        role="presentation"
+                        border="0"
+                        cellpadding="0"
+                        cellspacing="0"
+                        width="100%"
+                        style="margin-bottom: 12px"
+                      >
+                        <tr>
+                          <td
+                            width="110"
+                            style="
+                              font-size: 13px;
+                              font-weight: 600;
+                              color: #6b7280;
+                              vertical-align: top;
+                            "
+                          >
+                            📞 Teléfono:
+                          </td>
+                          <td class="field-value" style="font-size: 15px">
+                            <a
+                              href="tel:{{ phone }}"
+                              style="color: #1c5c9c; text-decoration: none"
+                              >{{ phone }}</a
+                            >
+                          </td>
+                        </tr>
+                      </table>
+
+                      <!-- Asunto -->
+                      <table
+                        role="presentation"
+                        border="0"
+                        cellpadding="0"
+                        cellspacing="0"
+                        width="100%"
+                      >
+                        <tr>
+                          <td
+                            width="110"
+                            style="
+                              font-size: 13px;
+                              font-weight: 600;
+                              color: #6b7280;
+                              vertical-align: top;
+                            "
+                          >
+                            ⭐ Asunto:
+                          </td>
+                          <td
+                            class="field-value"
+                            style="
+                              font-size: 15px;
+                              color: #111827;
+                              font-weight: 600;
+                            "
+                          >
+                            {{ reason }}
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+
+                <!-- Mensaje del usuario -->
+                <h2
+                  style="
+                    margin: 0 0 12px 0;
+                    font-size: 16px;
+                    font-weight: 700;
+                    color: #111827;
+                    text-transform: uppercase;
+                    letter-spacing: 0.5px;
+                  "
+                >
+                  ✨ Mensaje del usuario
+                </h2>
+
+                <table
+                  role="presentation"
+                  border="0"
+                  cellpadding="0"
+                  cellspacing="0"
+                  width="100%"
+                  style="
+                    background-color: #ffffff;
+                    border: 2px solid #1c5c9c;
+                    border-radius: 6px;
+                    margin-bottom: 24px;
+                  "
+                >
+                  <tr>
+                    <td style="padding: 20px">
+                      <p
+                        class="mobile-font"
+                        style="
+                          margin: 0;
+                          font-size: 15px;
+                          color: #374151;
+                          line-height: 1.7;
+                        "
+                      >
+                        {{ message }}
+                      </p>
+                    </td>
+                  </tr>
+                </table>
+
+                <!-- Botón de acción rápida: responder por correo -->
+                <table
+                  role="presentation"
+                  border="0"
+                  cellpadding="0"
+                  cellspacing="0"
+                  style="margin: 0 auto"
+                >
+                  <tr>
+                    <td
+                      align="center"
+                      style="border-radius: 6px; background-color: #1c5c9c"
+                    >
+                      <a
+                        href="mailto:{{ email }}?subject=Re: {{ reason }}"
+                        target="_blank"
+                        style="
+                          display: inline-block;
+                          padding: 12px 28px;
+                          font-size: 15px;
+                          font-weight: 600;
+                          color: #ffffff;
+                          text-decoration: none;
+                          border-radius: 6px;
+                          background-color: #1c5c9c;
+                          border: 1px solid #1c5c9c;
+                        "
+                      >
+                        ✉️ Responder por correo
+                      </a>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+            <!-- Footer -->
+            <tr>
+              <td
+                align="center"
+                style="
+                  background-color: #f9fafb;
+                  padding: 24px 20px;
+                  border-top: 1px solid #e5e7eb;
+                "
+              >
+                <p
+                  style="
+                    margin: 0 0 6px 0;
+                    font-size: 12px;
+                    color: #9ca3af;
+                    line-height: 1.5;
+                  "
+                >
+                  📧 Este correo fue generado automáticamente desde el
+                  formulario de contacto de la página web.
+                </p>
+                <p
+                  style="
+                    margin: 0;
+                    font-size: 12px;
+                    color: #9ca3af;
+                    line-height: 1.5;
+                  "
+                >
+                  © 2026 L&F Grupo Farmacéutico. Todos los derechos reservados.
+                </p>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
   </body>
 </html>

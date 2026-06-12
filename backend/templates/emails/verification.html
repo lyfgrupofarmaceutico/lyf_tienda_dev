@@ -2,76 +2,249 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <title>✨ Verificación de cuenta</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Verificación de cuenta | L&F Grupo Farmacéutico</title>
     <style>
+      /* Reset de estilos para clientes de correo */
+      body,
+      table,
+      td,
+      a {
+        -webkit-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+      }
+      table,
+      td {
+        mso-table-lspace: 0pt;
+        mso-table-rspace: 0pt;
+      }
+      img {
+        -ms-interpolation-mode: bicubic;
+        border: 0;
+        height: auto;
+        line-height: 100%;
+        outline: none;
+        text-decoration: none;
+      }
       body {
-        font-family: Arial, sans-serif;
-        background-color: #f4f6f8;
-        margin: 0;
-        padding: 0;
+        height: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+        background-color: #f4f7f6;
       }
-      .container {
-        max-width: 600px;
-        margin: 40px auto;
-        background-color: #d1d1d1;
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-        padding: 30px;
-      }
-      .logo {
-        width: 100%;
-        height: 80px;
-        border-radius: 8px;
-        background-color: #ffffff;
-        overflow: hidden;
-        margin: 0 auto 20px auto;
-        display: block;
-      }
-      .logo img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-        display: block;
-      }
-      .otp {
-        font-size: 28px;
-        font-weight: bold;
-        color: #2d89c8;
-        background-color: #ffffff;
-        border-radius: 8px;
-        text-align: center;
-        margin: 20px 0;
-      }
-      p {
-        font-size: 16px;
-        color: #374151;
-        text-align: center;
-      }
-      .footer {
-        margin-top: 30px;
-        font-size: 12px;
-        color: #2d89c8;
-        text-align: center;
+
+      /* Estilos responsivos */
+      @media screen and (max-width: 600px) {
+        .email-container {
+          width: 100% !important;
+          margin: 0 !important;
+        }
+        .content-padding {
+          padding: 20px !important;
+        }
+        .mobile-font {
+          font-size: 14px !important;
+        }
+        .otp-code {
+          font-size: 28px !important;
+          letter-spacing: 2px !important;
+        }
       }
     </style>
   </head>
-  <body>
-    <div class="container">
-      {% comment %}
-      <div class="logo">
-        <img
-          src="http://localhost:8000/media/logo.png"
-          alt="L&F Grupo Farmacéutico"
-        />
-      </div>
-      {% endcomment %}
-      <p>Gracias por registrarte en <strong>L&F Grupo Farmacéutico</strong>.</p>
-      <p>Tu código de verificación es:</p>
-      <div class="otp">{{ otp }}</div>
-      <p>🕑 Este código expira en 10 minutos.</p>
-      <div class="footer">
-        © 2026 L&F Grupo Farmacéutico. Todos los derechos reservados.
-      </div>
-    </div>
+  <body
+    style="
+      margin: 0;
+      padding: 0;
+      background-color: #f4f7f6;
+      font-family: &quot;Segoe UI&quot;, Tahoma, Geneva, Verdana, sans-serif;
+    "
+  >
+    <!-- Contenedor Principal -->
+    <table
+      role="presentation"
+      border="0"
+      cellpadding="0"
+      cellspacing="0"
+      width="100%"
+      style="background-color: #f4f7f6"
+    >
+      <tr>
+        <td align="center" style="padding: 40px 10px">
+          <!-- Tarjeta del Email -->
+          <table
+            role="presentation"
+            border="0"
+            cellpadding="0"
+            cellspacing="0"
+            width="600"
+            class="email-container"
+            style="
+              background-color: #ffffff;
+              border-radius: 8px;
+              overflow: hidden;
+              box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            "
+          >
+            <!-- Barra de acento superior -->
+            <tr>
+              <td height="6" style="background-color: #2d89c8"></td>
+            </tr>
+
+            <!-- Encabezado / Logo -->
+            <tr>
+              <td align="center" style="padding: 30px 20px 10px 20px">
+                <!-- Texto corporativo -->
+                <h1
+                  style="
+                    margin: 0;
+                    font-size: 24px;
+                    font-weight: 700;
+                    color: #2d89c8;
+                    letter-spacing: -0.5px;
+                  "
+                >
+                  L&F Grupo Farmacéutico
+                </h1>
+              </td>
+            </tr>
+
+            <!-- Contenido Principal -->
+            <tr>
+              <td
+                class="content-padding"
+                style="padding: 20px 40px 40px 40px; text-align: center"
+              >
+                <p
+                  style="
+                    margin: 0 0 20px 0;
+                    font-size: 16px;
+                    color: #374151;
+                    line-height: 1.6;
+                  "
+                >
+                  ¡Bienvenido a
+                  <strong style="color: #111827">L&F Grupo Farmacéutico</strong
+                  >!
+                </p>
+
+                <p
+                  class="mobile-font"
+                  style="
+                    margin: 0 0 30px 0;
+                    font-size: 15px;
+                    color: #4b5563;
+                    line-height: 1.6;
+                  "
+                >
+                  Para completar tu registro y verificar tu cuenta, por favor
+                  utiliza el siguiente código de verificación:
+                </p>
+
+                <!-- Caja del Código OTP -->
+                <table
+                  role="presentation"
+                  border="0"
+                  cellpadding="0"
+                  cellspacing="0"
+                  width="100%"
+                  style="margin: 0 auto 30px auto"
+                >
+                  <tr>
+                    <td
+                      align="center"
+                      style="
+                        background-color: #f0f9ff;
+                        border: 2px dashed #bae6fd;
+                        border-radius: 8px;
+                        padding: 20px;
+                      "
+                    >
+                      <p
+                        class="otp-code"
+                        style="
+                          margin: 0;
+                          font-size: 36px;
+                          font-weight: 800;
+                          color: #2d89c8;
+                          letter-spacing: 6px;
+                          font-family: monospace;
+                        "
+                      >
+                        {{ otp }}
+                      </p>
+                    </td>
+                  </tr>
+                </table>
+
+                <!-- Caja de Nota de Seguridad -->
+                <table
+                  role="presentation"
+                  border="0"
+                  cellpadding="0"
+                  cellspacing="0"
+                  width="100%"
+                  style="
+                    background-color: #f0f9ff;
+                    border-left: 4px solid #2d89c8;
+                    border-radius: 4px;
+                    margin-top: 20px;
+                  "
+                >
+                  <tr>
+                    <td style="padding: 16px; text-align: left">
+                      <p
+                        class="mobile-font"
+                        style="
+                          margin: 0;
+                          font-size: 14px;
+                          color: #0369a1;
+                          line-height: 1.5;
+                        "
+                      >
+                        🔒 <strong>Nota de seguridad:</strong> Por tu
+                        protección, este código expirará en
+                        <strong>10 minutos</strong> y es de un solo uso.
+                        <strong>Nunca compartas este código con nadie.</strong>
+                        Si no creaste esta cuenta, puedes ignorar este mensaje
+                        de forma segura.
+                      </p>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+            <!-- Footer -->
+            <tr>
+              <td
+                align="center"
+                style="
+                  background-color: #f9fafb;
+                  padding: 24px 20px;
+                  border-top: 1px solid #e5e7eb;
+                "
+              >
+                <p
+                  style="
+                    margin: 0;
+                    font-size: 12px;
+                    color: #9ca3af;
+                    line-height: 1.5;
+                  "
+                >
+                  © 2026 L&F Grupo Farmacéutico. Todos los derechos
+                  reservados.<br />
+                  Este es un mensaje automático, por favor no respondas a este
+                  correo.
+                </p>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
   </body>
 </html>

@@ -58,81 +58,22 @@ def send_password_reset_email(user, abslink):
     msg.send()
 
 
-# Enviar correo a contacto
-# def send_contact_email(data: dict) -> none:
-#     # ================================
-#     # CORREO 1: Confirmación al cliente
-#     # ================================
-#     subject_client = "💬 Hemos recibido tu mensaje."
-#     from_email = settings.DEFAULT_FROM_EMAIL
-#     client_email = data.get("email")
-
-#     # Texto plano por si el html falla
-#     text_content_client = (
-#         f"Hola {data.get('fullname')},\n\n"
-#         f"Gracias por contactar a L&F Grupo Farmacéutico. "
-#         f"Hemos recibido tu mensaje sobre: {data.get('reason')}\n"
-#         f"Nos pondremos en contacto contigo lo más pronto posible."
-#     )
-
-#     # Plantilla contact.html
-#     html_content_client = render_to_string(
-#         "emails/contact-client.html",
-#         {
-#             "fullname": data.get("fullname"),
-#             "reason": data.get("reason"),
-#         },
-#     )
-
-#     msg_client = EmailMultiAlternatives(
-#         subject=subject_client,
-#         body=text_content_client,
-#         from_email=from_email,
-#         to=[client_email],
-#         reply_to=[from_email],
-#     )
-#     msg_client.attach_alternative(html_content_client, "text/html")
-#     msg_client.send()
-
-#     # ============================================
-#     # CORREO 2: Notificación al equipo de ventas
-#     # ============================================
-#     subject_sales = f"💬 {data.get('reason')}"
-#     sales_email = settings.EMAIL_SALES_LYF
-
-#     text_content_sales = (
-#         f"Nuevo mensaje desde el formulario de contacto:\n\n"
-#         f"• Nombre: {data.get('fullname')}\n"
-#         f"• Teléfono: {data.get('phone')}\n"
-#         f"• Ciudad: {data.get('city')}\n"
-#         f"• Email: {data.get('email')}\n"
-#         f"• Motivo: {data.get('reason')}\n"
-#         f"• Mensaje: {data.get('message')}\n"
-#     )
-
-#     html_content_sales = render_to_string("emails/contact-sales.html", data)
-
-
-#     msg_sales = EmailMultiAlternatives(
-#         subject=subject_sales,
-#         body=text_content_sales,
-#         from_email=from_email,
-#         to=[sales_email],
-#         reply_to=[client_email],
-#     )
-#     msg_sales.attach_alternative(html_content_sales, "text/html")
-#     msg_sales.send()
 def send_contact_email(data: dict) -> None:
-    from_email = getattr(settings, "DEFAULT_FROM_EMAIL", "noreply@tudominio.com")
+    from_email = settings.DEFAULT_FROM_EMAIL
     client_email = data["email"]
     sales_email = getattr(settings, "EMAIL_SALES_LYF", None)
+
+    # Validación básica del email del cliente
+    if not client_email or "@" not in client_email:
+        logger.error(f"❌ Email del cliente inválido: {client_email}")
+        return
 
     # ==========================================
     # 1. CORREO DE CONFIRMACIÓN AL CLIENTE
     # ==========================================
     try:
         msg_client = EmailMultiAlternatives(
-            subject="💬 Hemos recibido tu mensaje.",
+            subject="Hemos recibido tu mensaje | L&F Grupo Farmacéutico",
             body=(
                 f"Hola {data['fullname']},\n\n"
                 f"Gracias por contactar a L&F Grupo Farmacéutico. "
@@ -167,7 +108,7 @@ def send_contact_email(data: dict) -> None:
     if sales_email:
         try:
             msg_sales = EmailMultiAlternatives(
-                subject=f"💬 {data['reason'] - data['fullname']}",
+                subject=f"Nuevo contacto: {data['reason']}: {data['fullname']}",
                 body=(
                     f"Nuevo mensaje desde el formulario de contacto:\n\n"
                     f"• Nombre: {data.get('fullname')}\n"
