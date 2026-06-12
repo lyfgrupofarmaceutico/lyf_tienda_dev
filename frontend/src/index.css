@@ -4,43 +4,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* 
-  L&F Grupo Farmacéutico - Brand Style Sheet
-  Basado en la Guía de Identidad Visual de la marca.
-
-  // Colores de Marca extraídos del Logotipo 
-  --color-primary-blue: #2D89C8;  // Azul Primario - Confianza y Profesionalismo 
-  --color-deep-blue: #1E5F9E;     // Azul Profundo - Estabilidad y Autoridad 
-  --color-cyan-sky: #6AC3EC;      // Cian / Sky Blue - Frescura e Innovación 
-  
-  // Superficies y Fondos 
-  --color-white: #FFFFFF;         // Blanco Puro - Higiene y Claridad 
-  --color-bg-light: #F8FAFC;      // Fondo suave para secciones 
-  
-  // Tipografía 
-  --color-text-gray: #333333;     // Gris Texto - Alta legibilidad 
-  --color-text-on-dark: #FFFFFF;  // Texto sobre fondos oscuros 
-
-*/
-
-/* L&F Grupo Farmacéutico - Paleta de colores 
-
-Colores Principales
-  --primary-navy: #1a365d; // Azul Marino Corporativo - Confianza y Estabilidad
-  --primary-blue: #0056b3; // Azul Profesional Activo - CTAs y Acciones
-  --accent-blue: #2b6cb0; // Azul de Acento - Iconos y Detalles
-
-Superficies y Fondos
-  --bg-white: #ffffff; // Blanco Puro - Higiene y Claridad
-  --bg-ice: #f0f4f8; // Azul Hielo - Fondos de Sección y Separadores
-
-Tipografía
-  --text-main: #4a5568; // Gris Oscuro Azulado - Cuerpo de texto legible
-  --text-heading: #1a365d; // El mismo Navy para títulos - Autoridad
-  --text-on-blue: #ffffff; // Blanco para texto sobre fondos oscuros
-
-*/
-
 @layer base {
   :root {
     /* === FONTS === */

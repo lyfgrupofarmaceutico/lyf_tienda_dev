@@ -4,11 +4,11 @@ import { usePromocionesLanding } from "@src/hooks/usePromocionesLanding";
 import {
   ChevronLeft,
   ChevronRight,
-  Loader,
+  Dna,
   RefreshCw,
   ShieldCheck,
 } from "lucide-react";
-import equipolyf from "@src/assets/team/team1.webp";
+import equipolyf from "@src/assets/banners/banner-hero.webp";
 
 // CONTENIDO POR DEFECTO
 const PROMOCIONES_DEFAULT = [
@@ -48,13 +48,13 @@ const HeroCarousel = () => {
     }
   }, [error]);
 
-  // Auto-avance cada 7 segundos (solo si hay promociones)
+  // Auto-avance cada 6 segundos (solo si hay promociones)
   useEffect(() => {
     if (promocionesMostrar.length === 0 || isPaused) return;
 
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % promocionesMostrar.length);
-    }, 7000);
+    }, 6000);
 
     return () => clearInterval(timer);
   }, [promocionesMostrar.length, isPaused]);
@@ -87,19 +87,57 @@ const HeroCarousel = () => {
   // Skeleton UI durante carga
   if (isLoading && promociones.length === 0) {
     return (
-      <div className="relative h-[500px] md:h-[600px] bg-gradient-to-r from-black/15 via-black/10 to-black/5 overflow-hidden">
-        <div className="absolute inset-0 flex items-center justify-center animate-pulse">
-          <Loader className="h-10 w-10 text-primario animate-spin" />
+      <div
+        className="relative h-[500px] md:h-[600px] overflow-hidden bg-gray-900"
+        aria-label="Cargando promociones"
+        aria-busy="true"
+      >
+        {/* Fondo base del skeleton */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#1c5c9c] via-[#2d89c8] to-[#6ad0ec] animate-pulse" />
+
+        <div className="absolute inset-0 flex items-center justify-center">
+          <Dna className="h-10 w-10 text-txtBlanco animate-bounce" />
         </div>
 
-        {/* Puntos indicadores skeleton */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex space-x-2">
-          {[...Array(3)].map((_, index) => (
-            <div
-              key={index}
-              className="h-2 w-6 bg-primario rounded-full animate-pulse"
-            ></div>
-          ))}
+        {/* Overlay de degradado */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-black/20 to-black/10 z-10" />
+
+        {/* Contenido del Slide */}
+        <div className="absolute inset-0 z-20">
+          <div className="absolute px-4 md:px-8 inset-0 container mx-auto flex items-center">
+            <div className="max-w-2xl z-10 space-y-6">
+              {/* Título */}
+              <div className="h-12 md:h-16 lg:h-20 w-3/4 bg-white/20 rounded-lg animate-pulse" />
+
+              {/* Subtítulo */}
+              <div className="h-10 md:h-14 lg:h-16 w-1/2 bg-white/10 rounded-lg animate-pulse" />
+
+              {/* Descripción*/}
+              <div className="space-y-3 max-w-xl pt-2">
+                <div className="h-5 w-full bg-white/20 rounded animate-pulse" />
+              </div>
+
+              {/* Botón */}
+              <div className="pt-4">
+                <div className="h-12 md:h-14 w-48 md:w-56 bg-white/20 rounded-full animate-pulse" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Controles de navegación*/}
+        <div className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20">
+          <div className="h-12 w-12 md:h-14 md:w-14 bg-white/20 rounded-full animate-pulse" />
+        </div>
+        <div className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20">
+          <div className="h-12 w-12 md:h-14 md:w-14 bg-white/20 rounded-full animate-pulse" />
+        </div>
+
+        {/* Indicadores (Puntos) */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex space-x-3 z-20">
+          <div className="h-2.5 w-10 bg-white/30 rounded-full animate-pulse" />
+          <div className="h-2.5 w-2.5 bg-white/20 rounded-full animate-pulse" />
+          <div className="h-2.5 w-2.5 bg-white/20 rounded-full animate-pulse" />
         </div>
       </div>
     );

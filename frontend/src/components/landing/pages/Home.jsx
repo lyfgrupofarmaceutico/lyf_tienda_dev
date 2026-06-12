@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useProductosLanding } from "@src/hooks/useProductosLanding";
 import { useContactoLanding } from "@src/hooks/useContactoLanding";
 import { Link } from "react-router-dom";
@@ -87,13 +87,18 @@ const Home = () => {
     message: "",
   });
 
+  // Estado para el boton
+  const botonRef = useRef(null);
+  const contenedorRef = useRef(null);
+  const [mostrarTodos, setMostrarTodos] = useState(false);
+
   // Estado local para el skeleton
   const [showSkeleton, setShowSkeleton] = useState(true);
 
-  // 1. Validar si 'productos' es un arreglo real
+  // Validar si 'productos' es un arreglo real
   const esArregloValido = Array.isArray(productos);
 
-  // 2. Lógica calculada usando useMemo (Evita renders infinitos)
+  // Lógica calculada usando useMemo (Evita renders infinitos)
   const { productosMostrar, mostrarBanner } = useMemo(() => {
     if (isLoading || error || !esArregloValido || productos.length === 0) {
       return { productosMostrar: [], mostrarBanner: true };
@@ -101,20 +106,66 @@ const Home = () => {
     return { productosMostrar: productos, mostrarBanner: false };
   }, [productos, isLoading, error, esArregloValido]);
 
-  // 3. Manejo controlado del log de errores en un useEffect legítimo
+  // Manejo controlado del log de errores en un useEffect legítimo
   useEffect(() => {
     if (error) {
       console.warn("Error al cargar productos destacados:", error);
     }
   }, [error]);
 
-  // 4. Ocultar skeleton con temporizador seguro
+  // Ocultar skeleton con temporizador seguro
   useEffect(() => {
     if (!isLoading) {
       const timer = setTimeout(() => setShowSkeleton(false), 300);
       return () => clearTimeout(timer);
     }
   }, [isLoading]);
+
+  const productosVisibles = mostrarTodos
+    ? productosMostrar
+    : productosMostrar?.slice(0, 8) || [];
+
+  const manejarMostrarTodos = () => {
+    // Guardamos el estado anterior de forma segura
+    const seVaAExpandir = !mostrarTodos;
+    setMostrarTodos(seVaAExpandir);
+
+    if (seVaAExpandir) {
+      // ACCIÓN: VER MÁS
+      setTimeout(() => {
+        if (botonRef.current) {
+          // Obtenemos la posición absoluta del botón en la página
+          const posicionBoton =
+            botonRef.current.getBoundingClientRect().top + window.scrollY;
+
+          // Hacemos scroll hasta la posicion del boton + 50px extra hacia abajo
+          window.scrollTo({
+            top: posicionBoton - window.innerHeight + 150,
+            behavior: "smooth",
+          });
+        }
+
+        // Mantenemos el foco del teclado
+        botonRef.current?.focus({ preventScroll: true });
+      }, 150);
+    } else {
+      // ACCIÓN: VER MENOS
+      // Obtenemos la posicion absoluta de la sección de productos
+      const posicionContenedor =
+        contenedorRef.current.getBoundingClientRect().top + window.scrollY;
+
+      // Llevamos al usuario al inicio de la lista de productos
+      window.scrollTo({
+        top: posicionContenedor - 50,
+        behavior: "smooth",
+      });
+
+      // Mantenemos el foco en el boton para que nunca se pierda
+      setTimeout(() => {
+        botonRef.current?.focus({ preventScroll: true });
+      }, 150);
+    }
+  };
 
   // Skeleton UI para productos
   const renderSkeletonProductos = () => (
@@ -422,12 +473,28 @@ const Home = () => {
                 {renderSkeletonProductos()}
               </div>
             ) : (
-              /* Muestra la cuadrícula de productos de forma segura */
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 pt-10">
-                {Array.isArray(productosMostrar) &&
-                  productosMostrar.map((producto, index) => (
-                    <ProductCard key={producto.id || index} {...producto} />
-                  ))}
+              <div ref={contenedorRef}>
+                {/* Muestra la cuadrícula de productos de forma segura */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mb-10">
+                  {Array.isArray(productosVisibles) &&
+                    productosVisibles.map((producto, index) => (
+                      <ProductCard key={producto.id || index} {...producto} />
+                    ))}
+                </div>
+
+                {!error && productosMostrar.length > 8 && (
+                  <div className="flex w-full justify-center mb-10">
+                    {/* Enlace semántico estilizado como botón externo */}
+                    <Link
+                      ref={botonRef}
+                      onClick={manejarMostrarTodos}
+                      className="bg-primario hover:bg-secundario text-txtBlanco font-bold text-base md:text-lg px-6 py-2 rounded-md shadow-lg transition-all duration-300 flex items-center gap-2 transform hover:scale-105 active:scale-95"
+                      aria-expanded={mostrarTodos}
+                    >
+                      {mostrarTodos ? "Ver menos" : "Ver todos"}
+                    </Link>
+                  </div>
+                )}
               </div>
             )}
           </div>

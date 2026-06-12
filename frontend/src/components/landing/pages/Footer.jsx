@@ -97,7 +97,7 @@ const Footer = () => {
           <div className="border-t border-enfatext-enfasis pt-6">
             <div className="flex flex-col md:flex-row justify-between items-center">
               {/* Logo - Grupo Farmacéutico */}
-              <Link to="/" onClick={scrollToTop}>
+              <Link onClick={scrollToTop}>
                 <div className="flex items-center justify-center bg-white/80 backdrop-blur-sm rounded-sm mb-6 md:mb-0">
                   <img
                     src={logo}

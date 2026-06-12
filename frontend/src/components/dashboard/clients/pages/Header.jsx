@@ -3,7 +3,14 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useCartStore } from "@src/store/useCartStore";
 import authService from "@src/api/authService";
 import { useAuthStore } from "@src/store/authStore";
-import { ChevronDown, Menu, ShoppingCart, User, X } from "lucide-react";
+import {
+  ChevronDown,
+  LoaderCircle,
+  Menu,
+  ShoppingCart,
+  User,
+  X,
+} from "lucide-react";
 import { toast } from "react-hot-toast";
 
 import logo from "@assets/logo-grupo.webp";
@@ -162,7 +169,6 @@ const Header = () => {
           {/* Logo */}
           <div className="flex items-center">
             <Link
-              to="/"
               onClick={scrollToTop}
               className="focus:outline-none focus-visible:ring-2 focus-visible:ring-secundario focus-visible:ring-offset-2 focus-visible:ring-offset-bgPrimario rounded"
               aria-label="Ir al inicio"
@@ -279,11 +285,12 @@ const Header = () => {
                   role="menuitem"
                 >
                   {loggingOut ? (
-                    <span className="flex items-center justify-center gap-2">
-                      <span
+                    <span className="flex items-center justify-center gap-2 whitespace-nowrap">
+                      <LoaderCircle
                         className="h-4 w-4 animate-spin"
                         aria-hidden="true"
                       />
+                      Cerrando...
                     </span>
                   ) : (
                     "Cerrar sesión"

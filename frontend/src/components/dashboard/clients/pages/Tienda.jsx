@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import { useProductos } from "@src/hooks/useProductos";
 import { EmptyPage } from "../ui/EmptyPage";
 import { Search, Loader2, AlertCircle, RefreshCw } from "lucide-react";
@@ -8,6 +8,10 @@ import { Link } from "react-router-dom";
 const Tienda = () => {
   const [busqueda, setBusqueda] = useState("");
   const [tipoFiltro, setTipoFiltro] = useState("todos");
+
+  // Estado para el boton
+  const botonRef = useRef(null);
+  const contenedorRef = useRef(null);
   const [mostrarTodos, setMostrarTodos] = useState(false);
 
   const {
@@ -72,16 +76,44 @@ const Tienda = () => {
     : productosFiltrados?.slice(0, 8) || [];
 
   const manejarMostrarTodos = () => {
-    setMostrarTodos(!mostrarTodos);
-    if (!mostrarTodos && productosFiltrados.length > 8) {
+    // Guardamos el estado anterior de forma segura
+    const seVaAExpandir = !mostrarTodos;
+    setMostrarTodos(seVaAExpandir);
+
+    if (seVaAExpandir) {
+      // ACCIÓN: VER MÁS
       setTimeout(() => {
-        window.scrollTo({
-          top: document.body.scrollHeight,
-          behavior: "smooth",
-        });
-      }, 300);
-    } else if (mostrarTodos) {
-      window.scrollTo({ top: 0, behavior: "smooth" });
+        if (botonRef.current) {
+          // Obtenemos la posición absoluta del botón en la página
+          const posicionBoton =
+            botonRef.current.getBoundingClientRect().top + window.scrollY;
+
+          // Hacemos scroll hasta la posicion del boton + 50px extra hacia abajo
+          window.scrollTo({
+            top: posicionBoton - window.innerHeight + 150,
+            behavior: "smooth",
+          });
+        }
+
+        // Mantenemos el foco del teclado
+        botonRef.current?.focus({ preventScroll: true });
+      }, 150);
+    } else {
+      // ACCIÓN: VER MENOS
+      // Obtenemos la posicion absoluta de la sección de productos
+      const posicionContenedor =
+        contenedorRef.current.getBoundingClientRect().top + window.scrollY;
+
+      // Llevamos al usuario al inicio de la lista de productos
+      window.scrollTo({
+        top: posicionContenedor,
+        behavior: "smooth",
+      });
+
+      // Mantenemos el foco en el boton para que nunca se pierda
+      setTimeout(() => {
+        botonRef.current?.focus({ preventScroll: true });
+      }, 150);
     }
   };
 
@@ -130,7 +162,7 @@ const Tienda = () => {
         </section>
 
         {/* Sección - Productos */}
-        <section className="mb-16">
+        <section ref={contenedorRef} className="mb-16">
           <div className="container mx-auto px-4 md:px-8">
             <h1 className="text-primario text-3xl font-bold pb-2">
               Todos los productos
@@ -232,7 +264,7 @@ const Tienda = () => {
                 {!error && productosFiltrados.length > 8 && (
                   <div className="flex justify-center mt-16">
                     <Link
-                      to="/dashboard"
+                      ref={botonRef}
                       onClick={manejarMostrarTodos}
                       disabled={isRefetching}
                       className="bg-primario hover:bg-secundario text-txtBlanco font-bold text-base md:text-lg px-6 py-2 rounded-md shadow-lg transition-all duration-300 flex items-center gap-2 transform hover:scale-105 active:scale-95"
