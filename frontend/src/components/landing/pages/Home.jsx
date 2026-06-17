@@ -732,7 +732,7 @@ const Home = () => {
                   <div className="h-full w-full">
                     <iframe
                       className="aspect-video rounded-md"
-                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2100.13401844874357!2d-76.58964358270168!3d2.459039277684895!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e30039b85b9df11%3A0x742434b81d87abfe!2sGrupo%20Farmaceutico%20Bio%20Molekular%20SAS!5e0!3m2!1ses-419!2sco!4v1760023809826!5m2!1ses-419!2sco"
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7972.356526877779!2d-76.6042938!3d2.4476436!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3003b0f7e9023f%3A0x94165d52dc7d55cb!2sL%26F%20Grupo%20Farmac%C3%A9utico!5e0!3m2!1ses-419!2sco!4v1781730166547!5m2!1ses-419!2sco"
                       loading="eager"
                     ></iframe>
                   </div>
