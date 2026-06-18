@@ -731,10 +731,15 @@ const Home = () => {
                 <div className="flex pt-10">
                   <div className="h-full w-full">
                     <iframe
-                      className="aspect-video rounded-md"
-                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7972.356526877779!2d-76.6042938!3d2.4476436!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3003b0f7e9023f%3A0x94165d52dc7d55cb!2sL%26F%20Grupo%20Farmac%C3%A9utico!5e0!3m2!1ses-419!2sco!4v1781730166547!5m2!1ses-419!2sco"
-                      loading="eager"
-                    ></iframe>
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7972.356526877779!2d-76.6042938!3d2.4476436!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3003b0f7e9023f%3A0x94165d52dc7d55cb!2sL%26F%20Grupo%20Farmac%C3%A9utico!5e0!3m2!1ses-419!2sco!4v1781814280905!5m2!1ses-419!2sco"
+                      width="100%"
+                      height="450"
+                      style={{ border: 0 }}
+                      allowFullScreen=""
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                      title="Ubicación de L&F Grupo Farmacéutico"
+                    />
                   </div>
                 </div>
               </div>
