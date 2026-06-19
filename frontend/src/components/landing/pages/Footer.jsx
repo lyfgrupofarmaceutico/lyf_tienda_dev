@@ -110,17 +110,17 @@ const Footer = () => {
 
             {/* Desarrollado por */}
             <div className="flex items-center justify-start md:justify-center mt-4 text-sm text-blue-light">
-              <p>© Desarrollado por | </p>
+              <p>Copyright © 2026 | Desarrollado por </p>
               <a
                 href="https://takeshi-dev.site/"
                 target="__blanck"
-                className="mx-1 font-bold text-[#0ef]"
+                className="mx-1 text-[#0ef]"
               >
                 takeshi-dev
               </a>
-              <div>
+              {/* <div>
                 <img src={co} alt="logo" className="size-4" />
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
